@@ -1,5 +1,3 @@
-This is the bugmail-tweaks add-on.  It contains:
+Bugmail-tweaks is a Firefox add-on to make Gmail more palatable.
 
-* A program (lib/main.js).
-* A few tests.
-* Some meager documentation.
+To hack on it, you'll need Jetpack: https://jetpack.mozillalabs.com/
