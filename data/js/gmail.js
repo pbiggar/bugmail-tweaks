@@ -4,8 +4,17 @@
 
 
 
-function tweaker(document, gmonkey) {
-    console.log("loaded");
+function tweaker(gmail) {
+  try {
+
+    console.log("loaded", gmail);
+    console.log(gmail.getActiveViewType());
+    setTimeout(tweaker, 3000, gmail);
+
+  } catch (e) {
+    console.log("error");
+    console.exception(e);
+  }
 }
 
 try {
