@@ -6,26 +6,38 @@ function is_bugmail(html) {
   return html.match(this.recognizer) != null;
 }
 
-function bug(num) {
-  return '<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=' + bug + '">' + bug + '</a>';
+var bz = "https://bugzilla.mozilla.org/";
+
+function bug(num, str) {
+  if (!str) { str = num; }
+  return '<a href="' + bz + 'show_bug.cgi?id=' + num + '">' + str + '</a>';
 }
+
+function replacer(pattern, replacement) {
+  return function(html, obj) {
+    pattern = new RegExp(pattern.source, "gm");
+    return html.replace(pattern, replacement);
+  }
+}
+
+rblocks = replacer(/Blocks: (\d+)/, 'Blocks: ' + bug('$1'));
+rbug = replacer(/([bB]ug:?\s*)(\d+)/, bug('$2', '$1$2'));
+lineup = replacer(/<br>\n( &nbsp;){5} What( &nbsp;){2}\|Old Value( &nbsp;){9} \|New Value<br>\n(-*<wbr>){2}-*<br>\n[\s\S]*<br>\n<br>\n/, '<pre>$&</pre>');
+
 
 first = {
   name: 'first mail',
   recognizer: '^<div id=":\\w+"><a href="https://bugzilla.mozilla.org/show_bug.cgi\\?id=\\d+',
   matches: is_bugmail,
-  tweak: function(html) {
-    html = html.replace(/Blocks: (\d+)/, 'Blocks: <a href="https://bugzil.la/$1">$1</a>', 'm');
-    html = html.replace(/([bB]ug:?\s*)(\d+)/, '<a href="https://bugzil.la/$2">$1$2</a>', 'm');
-    return html;
-  }
+  replacers: [rblocks, rbug],
 };
 
 later = {
   name: 'later mail',
   recognizer: '^<div id=":\\w+"><div class="im"><a href="https://bugzilla.mozilla.org/show_bug.cgi\\?id=\\d+',
   matches: is_bugmail,
-  tweak: function(html) {
+  replacers: [rblocks, rbug, lineup],
+  parser: function(html) {
     // Regexs that, concated together, parse bug information out of the gmail's HTML
     var start = '^<div id=":\\w+"><div class="im"><a href="https://bugzilla.mozilla.org/';
     var bugnum = 'show_bug.cgi\\?id=(\\d+)';
@@ -36,14 +48,7 @@ later = {
 
     // Read the data first.
     var re = start + bugnum + comment_num + author + username + date;
-    result = html.match(re, 'm');
-
-
-    console.log(html);
-    console.log(re);
-    console.log(result);
-
-    return result;
+    return html.match(re, 'm');
   }
 };
 
@@ -58,7 +63,12 @@ function tweak(msg) {
     if (b.matches(html)) {
       console.log("Matches: " + b.name);
       console.log("old: " + html);
-      html = b.tweak(html);
+      obj = b.parser ? b.parser(html) : null;
+      for (r in b.replacers) {
+        html = b.replacers[r](html, obj);
+      }
+
+      // Don't run multiple parsers over it, handle that use case by inheritence.
       console.log("new: " + html);
       msg.innerHTML = html;
       return;
