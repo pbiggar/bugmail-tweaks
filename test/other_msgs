@@ -1,0 +1,89 @@
+<div id=":1ox"><div class="im"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=654028" target="_blank">https://bugzilla.mozilla.org/<wbr>show_bug.cgi?id=654028</a><br>
+<br>
+</div>--- Comment #7 from Boris Zbarsky (:bz) &lt;<a href="mailto:bzbarsky@mit.edu">bzbarsky@mit.edu</a>&gt; 2011-05-04 20:01:51 PDT ---<br>
+<div class="im">&gt; but only in Nightly. Aurora and 4.0.1 work as expected.<br>
+<br>
+</div>Hmm. &nbsp;Can we figure out a regression range here?<br>
+<div><div><span id="q_12fbe2dc97588fb2_4" class="h4">- Show quoted text -</span></div><div class="h5"><br>
+--<br>
+Configure bugmail: <a href="https://bugzilla.mozilla.org/userprefs.cgi?tab=email" target="_blank">https://bugzilla.mozilla.org/<wbr>userprefs.cgi?tab=email</a><br>
+------- You are receiving this mail because: -------<br>
+You are watching the component.<br>
+You are watching the QA Contact of the bug.<br>
+</div></div></div>", "<div id=":1pc"><div class="im"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=654028" target="_blank">https://bugzilla.mozilla.org/<wbr>show_bug.cgi?id=654028</a><br>
+<br>
+</div>-fullmetaljacket- &lt;<a href="mailto:fullmetaljacket.xp%2Bbugmail@gmail.com">fullmetaljacket.xp+bugmail@<wbr>gmail.com</a>&gt; changed:<br>
+<br>
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; What &nbsp; &nbsp;|Removed &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; |Added<br>
+------------------------------<wbr>------------------------------<wbr>----------------<br>
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; CC| &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;|fullmetaljacket.xp+bugmail@<br>
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;|<a href="http://gmail.com" target="_blank">gmail.com</a><br>
+<div><div><span id="q_12fbef9e190d5d32_2" class="h4">- Show quoted text -</span></div><div class="h5"><br>
+--<br>
+Configure bugmail: <a href="https://bugzilla.mozilla.org/userprefs.cgi?tab=email" target="_blank">https://bugzilla.mozilla.org/<wbr>userprefs.cgi?tab=email</a><br>
+------- You are receiving this mail because: -------<br>
+You are watching the component.<br>
+</div></div></div>", "<div id=":1pr"><div class="im"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=654028" target="_blank">https://bugzilla.mozilla.org/<wbr>show_bug.cgi?id=654028</a><br>
+<br>
+</div><div class="im">Ed Morley [:edmorley] &lt;<a href="mailto:bmo@edmorley.co.uk">bmo@edmorley.co.uk</a>&gt; changed:<br>
+<br>
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; What &nbsp; &nbsp;|Removed &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; |Added<br>
+------------------------------<wbr>------------------------------<wbr>----------------<br>
+</div> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Keywords| &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;|regression,<br>
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;|regressionwindow-wanted<br>
+<div class="im"><br>
+--<br>
+Configure bugmail: <a href="https://bugzilla.mozilla.org/userprefs.cgi?tab=email" target="_blank">https://bugzilla.mozilla.org/<wbr>userprefs.cgi?tab=email</a><br>
+------- You are receiving this mail because: -------<br>
+You are watching the component.<br>
+</div><div><div><span id="q_12fbffbbc80481c5_4" class="h4">- Show quoted text -</span></div><div class="h5">You are watching the QA Contact of the bug.<br>
+</div></div></div>", "<div id=":1g2"><div class="im"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=654028" target="_blank">https://bugzilla.mozilla.org/<wbr>show_bug.cgi?id=654028</a><br>
+<br>
+</div>--- Comment #8 from Hugh Nougher [:Hughman] &lt;<a href="mailto:hughnougher@gmail.com">hughnougher@gmail.com</a>&gt; 2011-05-07 02:29:35 PDT ---<br>
+Last good nightly: 2011-04-26 First bad nightly: 2011-04-27<br>
+<br>
+Pushlog:<br>
+<a href="http://hg.mozilla.org/mozilla-central/pushloghtml?fromchange=c5e8cc100248&amp;tochange=c833fb1623ca" target="_blank">http://hg.mozilla.org/mozilla-<wbr>central/pushloghtml?<wbr>fromchange=c5e8cc100248&amp;<wbr>tochange=c833fb1623ca</a><br>
+<div class="im"><br>
+--<br>
+Configure bugmail: <a href="https://bugzilla.mozilla.org/userprefs.cgi?tab=email" target="_blank">https://bugzilla.mozilla.org/<wbr>userprefs.cgi?tab=email</a><br>
+------- You are receiving this mail because: -------<br>
+</div>You are watching the component for the bug.<br>
+<div><div><span id="q_12fc9dd74cb1888c_4" class="h4">- Show quoted text -</span></div><div class="h5">You are watching the QA Contact of the bug.<br>
+</div></div></div>", "<div id=":1gh"><div class="im"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=654028" target="_blank">https://bugzilla.mozilla.org/<wbr>show_bug.cgi?id=654028</a><br>
+<br>
+</div>--- Comment #9 from Hugh Nougher [:Hughman] &lt;<a href="mailto:hughnougher@gmail.com">hughnougher@gmail.com</a>&gt; 2011-05-07 03:37:01 PDT ---<br>
+Tracemonkey for tm to m-c merge in above changesets:<br>
+Last good nightly: 2011-04-13 First bad nightly: 2011-04-14<br>
+<br>
+Pushlog:<br>
+<a href="http://hg.mozilla.org/tracemonkey/pushloghtml?fromchange=cd5910633dd8&amp;tochange=dc6ce44bedd4" target="_blank">http://hg.mozilla.org/<wbr>tracemonkey/pushloghtml?<wbr>fromchange=cd5910633dd8&amp;<wbr>tochange=dc6ce44bedd4</a><br>
+<div><div><span id="q_12fca1b24c9f5efc_2" class="h4">- Show quoted text -</span></div><div class="h5"><br>
+--<br>
+Configure bugmail: <a href="https://bugzilla.mozilla.org/userprefs.cgi?tab=email" target="_blank">https://bugzilla.mozilla.org/<wbr>userprefs.cgi?tab=email</a><br>
+------- You are receiving this mail because: -------<br>
+You are watching the component for the bug.<br>
+You are watching the QA Contact of the bug.<br>
+</div></div></div>", "<div id=":1gw"><div class="im"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=654028" target="_blank">https://bugzilla.mozilla.org/<wbr>show_bug.cgi?id=654028</a><br>
+<br>
+</div>Boris Zbarsky (:bz) &lt;<a href="mailto:bzbarsky@mit.edu">bzbarsky@mit.edu</a>&gt; changed:<br>
+<br>
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; What &nbsp; &nbsp;|Removed &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; |Added<br>
+------------------------------<wbr>------------------------------<wbr>----------------<br>
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Keywords|regressionwindow-<wbr>wanted &nbsp; &nbsp; |<br>
+ &nbsp;tracking-firefox6|--- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; |?<br>
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Blocks| &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;|627200<br>
+ &nbsp; &nbsp;status-firefox5|--- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; |unaffected<br>
+<br>
+--- Comment #10 from Boris Zbarsky (:bz) &lt;<a href="mailto:bzbarsky@mit.edu">bzbarsky@mit.edu</a>&gt; 2011-05-07 20:05:58 PDT ---<br>
+Looks likely to be a background finalization problem. &nbsp;Hugh, thanks for hunting<br>
+those ranges down!<br>
+<br>
+Gregor, can you take a look?<br>
+<div><div><span id="q_12fcda49791316cb_2" class="h4">- Show quoted text -</span></div><div class="h5"><br>
+--<br>
+Configure bugmail: <a href="https://bugzilla.mozilla.org/userprefs.cgi?tab=email" target="_blank">https://bugzilla.mozilla.org/<wbr>userprefs.cgi?tab=email</a><br>
+------- You are receiving this mail because: -------<br>
+You are watching the component for the bug.<br>
+You are watching the QA Contact of the bug.<br>
+</div></div></div>", undefined, undefined]

@@ -1,0 +1,31 @@
+table,comment
+<div id=":1ll"><div class="im"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=654028" target="_blank">https://bugzilla.mozilla.org/<wbr>show_bug.cgi?id=654028</a><br>
+<br>
+</div><div class="im">Alon Zakai (:azakai) &lt;<a href="mailto:azakai@mozilla.com">azakai@mozilla.com</a>&gt; changed:<br>
+<br>
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; What &nbsp; &nbsp;|Removed &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; |Added<br>
+------------------------------<wbr>------------------------------<wbr>----------------<br>
+</div> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Platform|x86 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; |All<br>
+ &nbsp; &nbsp; &nbsp; &nbsp; OS/Version|Linux &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; |All<br>
+<br>
+--- Comment #5 from Alon Zakai (:azakai) &lt;<a href="mailto:azakai@mozilla.com">azakai@mozilla.com</a>&gt; 2011-05-03 13:56:23 PDT ---<br>
+Forgot to write proper STR for the testcase:<br>
+<br>
+1. Load page<br>
+2. Scroll down by pressing down arrow. Over 70MB of garbage should be created<br>
+in less than a second.<br>
+3. Wait however long you want, and watch that memory usage remains the same,<br>
+that is, the 70MB is never cleaned up.<br>
+<br>
+Optionally, also do<br>
+<br>
+4. Press control-shift-J to open the JS console.<br>
+5. Wait 10 seconds.<br>
+6. See the 70MB of garbage cleaned up.<br>
+<div class="im"><br>
+--<br>
+Configure bugmail: <a href="https://bugzilla.mozilla.org/userprefs.cgi?tab=email" target="_blank">https://bugzilla.mozilla.org/<wbr>userprefs.cgi?tab=email</a><br>
+------- You are receiving this mail because: -------<br>
+You are watching the component.<br>
+</div><div><div><span id="q_12fb7b8d4ace0e5d_4" class="h4">- Show quoted text -</span></div><div class="h5">You are watching the QA Contact of the bug.<br>
+</div></div></div>
