@@ -12,10 +12,7 @@ if (!this.bugmail.gmail) {
           if (!msg.bugmail_tweaked)
           {
             if (msg.innerHTML) {
-
               callback(msg);
-
-
             }
             msg.bugmail_tweaked = true;
           }
@@ -25,8 +22,6 @@ if (!this.bugmail.gmail) {
       console.log("error tweaking");
       console.exception(e);
     }
-
-    setTimeout(updateConversation, 3000, cv, callback);
   }
 
 
@@ -40,7 +35,6 @@ if (!this.bugmail.gmail) {
       else {
         console.log("loading", gmail);
         console.log(gmail.getActiveViewType());
-        setTimeout(tweaker, 3000, gmail, callback);
       }
     } catch (e) {
       console.log("tweaker error");
@@ -51,7 +45,7 @@ if (!this.bugmail.gmail) {
   function load (window, callback) {
     try {
       if ("gmonkey" in window) {
-        window.gmonkey.load("2.0", function(gmail) { tweaker(gmail, callback); });
+        window.gmonkey.load("2.0", function(gmail) { window.setInterval(tweaker, 500, gmail, callback); });
       } else {
         console.log("No gmonkey here");
       }
