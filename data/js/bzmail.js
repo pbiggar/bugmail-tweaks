@@ -17,13 +17,14 @@ if (!this.bugmail.bzmail) {
 
   function bug (num, str) {
     if (!str) { str = num; }
-    return '<a href="' + bz + 'show_bug.cgi?id=' + num + '">' + str + '</a>';
+    return '<a href="' + bz + 'show_bug.cgi?id=' + num + '" target="_blank">' + str + '</a>';
   };
 
 
 
   var rblocks = replacer(/Blocks: (\d+)/, 'Blocks: ' + bug('$1'));
   var rbug = replacer(/([bB]ug:?\s*)(\d+)/, bug('$2', '$1$2'));
+  var rtablebug = replacer(/\|(\d+\n)/, bug('$1'));
 
   function monospacer(html, obj) {
     // Parse a bugzilla block and wrap pre tags around it. eg:
@@ -103,14 +104,14 @@ if (!this.bugmail.bzmail) {
     name: 'first mail',
     recognizer: '^<div id=":\\w+"><a href="https://bugzilla.mozilla.org/show_bug.cgi\\?id=\\d+',
     matches: is_bugmail,
-    replacers: [rblocks, rbug, monospacer],
+    replacers: [rblocks, rbug, monospacer, rtablebug],
   };
 
   var later = {
     name: 'later mail',
     recognizer: '^<div id=":\\w+"><div class="im"><a href="https://bugzilla.mozilla.org/show_bug.cgi\\?id=\\d+',
     matches: is_bugmail,
-    replacers: [rblocks, rbug, monospacer],
+    replacers: [rblocks, rbug, monospacer, rtablebug],
 
     parser:
       function(html) {
