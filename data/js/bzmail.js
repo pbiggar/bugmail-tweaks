@@ -24,25 +24,76 @@ if (!this.bugmail.bzmail) {
 
   var rblocks = replacer(/Blocks: (\d+)/, 'Blocks: ' + bug('$1'));
   var rbug = replacer(/([bB]ug:?\s*)(\d+)/, bug('$2', '$1$2'));
-  var lineup1 = replacer(/<br>\n( &nbsp;){5} What( &nbsp;){2}\|Old Value( &nbsp;){9} \|New Value<br>\n(-*<wbr>){2}-*<br>\n[\s\S]*<br>\n<br>\n/, '<pre>$&</pre>');
-  var lineup2 = replacer(/<br>\n( &nbsp;){5} What( &nbsp;){2}\|Removed( &nbsp;){10} \|Added<br>\n(-*<wbr>){2}-*<br>\n[\s\S]*?<br>\n<br>\n/, '<pre>$&</pre>');
+
+  function monospacer(html, obj) {
+    // Parse a bugzilla block and wrap pre tags around it. eg:
+    //    What    |Removed                     |Added
+    //    ----------------------------------------------------------------------------
+    //    Summary |Add trychooser syntax for   |Add trychooser syntax for
+    //            |SM builds                   |Spidermonkey builds
+
+
+    // The HTML gmail generates around this can be quite changable, so be
+    // robust. We match on HEADER+BARS+ROWS*. We stop when there is a newline
+    // with no '&nbsp;'s (not too hard since '.' doesn't match newlines in JS).
+
+    var header1 = /( &nbsp;){5} What( &nbsp;){2}\|Old Value( &nbsp;){9} \|New Value/;
+    var header2 = /( &nbsp;){5} What( &nbsp;){2}\|Removed( &nbsp;){10} \|Added/;
+    var bars = /(-*<wbr>){2}-*/;
+    var linebreak = /<br>\n/;
+    var row = /.*nbsp.*/;
+
+
+    // A simple line parser. When we see a header we open a PRE tag, and we
+    // close it again once we no longer match a row.
+ 
+    result = "";
+    var started = false;
+
+    lines = html.split(linebreak);
+    for (var i in lines) {
+      var line = lines[i];
+
+      if (line.match(header1) || line.match(header2)) {
+        // heading
+        started = true;
+        result += '<pre>' + line + '\n';
+      } else if (started) {
+        if (line.match(bars) || line.match(row)) {
+          // rows
+          result += line + '\n';
+        } else {
+          // Finished
+          result += '</pre><br>\n' + line;
+          started = false;
+        }
+      } else {
+        // Unrelated
+        result += line + '<br>\n';
+      }
+    }
+
+    return result;
+  }
 
   function commentify(html, obj) {
     return html.replace(later.recognizer, '$&#c' + obj.comment_num);
-  };
+  }
 
+  // This could actually be any comment or change (not just comment 0) if the
+  // subject of the bug is changed.
   var first = {
     name: 'first mail',
     recognizer: '^<div id=":\\w+"><a href="https://bugzilla.mozilla.org/show_bug.cgi\\?id=\\d+',
     matches: is_bugmail,
-    replacers: [rblocks, rbug],
+    replacers: [rblocks, rbug, monospacer],
   };
 
   var later = {
     name: 'later mail',
     recognizer: '^<div id=":\\w+"><div class="im"><a href="https://bugzilla.mozilla.org/show_bug.cgi\\?id=\\d+',
     matches: is_bugmail,
-    replacers: [rblocks, rbug, lineup1, lineup2],
+    replacers: [rblocks, rbug, monospacer],
 
     parser:
       function(html) {
@@ -72,14 +123,16 @@ if (!this.bugmail.bzmail) {
       if (b.matches(html)) {
         console.log("Matches: " + b.name);
         console.log("old: " + html);
-        console.log(b.parser);
         obj = b.parser ? b.parser(html) : null;
         for (r in b.replacers) {
+          old = html;
           html = b.replacers[r](html, obj);
+          if (old != html) {
+            console.log("new: " + html);
+          }
         }
 
         // Don't run multiple parsers over it, handle that use case by inheritence.
-        console.log("new: " + html);
         msg.innerHTML = html;
         return;
       }
