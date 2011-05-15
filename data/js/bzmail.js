@@ -40,7 +40,6 @@ if (!this.bugmail.bzmail) {
     var header1 = /( &nbsp;){5} What( &nbsp;){2}\|Old Value( &nbsp;){9} \|New Value/;
     var header2 = /( &nbsp;){5} What( &nbsp;){2}\|Removed( &nbsp;){10} \|Added/;
     var bars = /(-*<wbr>){2}-*/;
-    var linebreak = /<br>\n/;
     var row = /.*nbsp.*/;
 
 
@@ -49,8 +48,9 @@ if (!this.bugmail.bzmail) {
  
     result = "";
     var started = false;
+    var readd_div = false;
 
-    lines = html.split(linebreak);
+    lines = html.split(/<br>\n/);
     for (var i in lines) {
       var line = lines[i];
 
@@ -61,11 +61,28 @@ if (!this.bugmail.bzmail) {
       } else if (started) {
         if (line.match(bars) || line.match(row)) {
           // rows
+          
+          // Special case: sometimes gmail closes a <div> in the middle of the
+          // table, which closes the pre. I don't like special-casing this, but
+          // the nicer way (wrapping each line in a <pre>) doesn't really fix
+          // the problem without a hack of it's own, and also leads to bad spacing.
+          if (line.match(/<\/div>/)) {
+            readd_div = true;
+            line = line.replace(/<\/div>/, '');
+          }
+
           result += line + '\n';
+
+          // spacial case
         } else {
           // Finished
-          result += '</pre><br>\n' + line;
+          if (readd_div) {
+            result += '</pre></div>\n' + line;
+          } else {
+            result += '</pre>\n' + line;
+          }
           started = false;
+
         }
       } else {
         // Unrelated
