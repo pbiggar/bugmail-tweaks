@@ -25,7 +25,7 @@ Hacking
 To hack on it, you'll need [Jetpack](https://jetpack.mozillalabs.com/).
 
 Development is on [github](https://github.com/pbiggar/bugmail-tweaks).
-Please file bugs and [send patches](paul.bggar@gmail.com) or make pull requests.
+Please file bugs and [send patches](mailto:paul.bggar@gmail.com) or make pull requests.
 
 
 Inspired by [bugzilla-tweaks](https://addons.mozilla.org/en-US/firefox/addon/bugzilla-tweaks/).
