@@ -22,11 +22,30 @@ if (!this.bugmail.bzmail) {
 
 
 
-  var rblocks = replacer(/Blocks: (\d+)/, 'Blocks: ' + bug('$1'));
-  var rbug = replacer(/([bB]ug:?\s*)(\d+)/, bug('$2', '$1$2'));
-  var rtablebug1 = replacer(/\|(\d+)\n/, '|' + bug('$1') + '\n');
-  var rtablebug2 = replacer(/\|(\d+), (\d+)\n/, '|' + bug('$1') + ', ' + bug('$2') + '\n');
-  var rtablebug3 = replacer(/\|(\d+), (\d+), (\d+)([,\n])/, '|' + bug('$1') + ', ' + bug('$2') + ', ' + bug('$3') + '$4');
+  var rblocks = replacer(/Blocks: (\d+)/,
+                         'Blocks: ' + bug('$1'));
+
+  var rbug = replacer(/([bB]ug:?\s*)(\d+)/,
+                      bug('$2', '$1$2'));
+
+  var rtablebug1 = replacer(/\|(\d+)\n/,
+                            '|' + bug('$1') + '\n');
+
+  var rtablebug2 = replacer(/\|(\d+), (\d+)\n/,
+                            '|' + bug('$1') + ', ' + bug('$2') + '\n');
+
+  var rtablebug3 = replacer(/\|(\d+), (\d+), (\d+)([,\n])/,
+                            '|' + bug('$1') + ', ' + bug('$2') + ', ' + bug('$3') + '$4');
+
+  var rtablebug4 = replacer(/\|(\d+)(\s+|)/,
+                            '|' + bug('$1') + '$2');
+
+  var rtablebug5 = replacer(/\|(\d+), (\d+)(\s+|)n/,
+                            '|' + bug('$1') + ', ' + bug('$2') + '$3');
+
+  var rtablebug6 = replacer(/\|(\d+), (\d+), (\d+)([,\s]|)/,
+                            '|' + bug('$1') + ', ' + bug('$2') + ', ' + bug('$3') + '$4');
+
 
   function monospacer(html, obj) {
     // Parse a bugzilla block and wrap pre tags around it. eg:
@@ -106,14 +125,14 @@ if (!this.bugmail.bzmail) {
     name: 'first mail',
     recognizer: '^<div id=":\\w+"><a href="https://bugzilla.mozilla.org/show_bug.cgi\\?id=\\d+',
     matches: is_bugmail,
-    replacers: [rblocks, rbug, monospacer, rtablebug1, rtablebug2, rtablebug3],
+    replacers: [rblocks, rbug, monospacer, rtablebug1, rtablebug2, rtablebug3, rtablebug4, rtablebug5, rtablebug6],
   };
 
   var later = {
     name: 'later mail',
     recognizer: '^<div id=":\\w+"><div class="im"><a href="https://bugzilla.mozilla.org/show_bug.cgi\\?id=\\d+',
     matches: is_bugmail,
-    replacers: [rblocks, rbug, monospacer, rtablebug1, rtablebug2, rtablebug3],
+    replacers: [rblocks, rbug, monospacer, rtablebug1, rtablebug2, rtablebug3, rtablebug4, rtablebug5, rtablebug6],
 
     parser:
       function(html) {
