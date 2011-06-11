@@ -42,6 +42,7 @@ if (!this.bugmail.bzmail) {
   var rbug = replacer(/([bB]ug:?\s*)(\d+)/,
                       bug('$2', '$1$2'));
 
+  // Rewrite bugs in the final column of a table
   var rtablebug1 = replacer(/\|(\d+)\n/,
                             '|' + bug('$1') + '\n');
 
@@ -51,6 +52,7 @@ if (!this.bugmail.bzmail) {
   var rtablebug3 = replacer(/\|(\d+), (\d+), (\d+)([,\n])/,
                             '|' + bug('$1') + ', ' + bug('$2') + ', ' + bug('$3') + '$4');
 
+  // Rewrite bugs in the middle column of a table
   var rtablebug4 = replacer(/\|(\d+)(\s+|)/,
                             '|' + bug('$1') + '$2');
 
