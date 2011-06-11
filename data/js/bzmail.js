@@ -132,6 +132,9 @@ if (!this.bugmail.bzmail) {
   }
 
   function commentify(html, obj) {
+    if (!obj)
+      return html;
+
     return html.replace(later.recognizer, '$&#c' + obj.comment_num);
   }
 
@@ -143,14 +146,14 @@ if (!this.bugmail.bzmail) {
     name: 'first mail',
     recognizer: '^<div id=":\\w+"><a href="https://bugzilla.mozilla.org/show_bug.cgi\\?id=\\d+',
     matches: is_bugmail,
-    replacers: [rblocks, rbug, monospacer, rtablebug1, rtablebug2, rtablebug3, rtablebug4, rtablebug5, rtablebug6],
+    replacers: [rblocks, rbug, monospacer, rtablebug1, rtablebug2, rtablebug3, rtablebug4, rtablebug5, rtablebug6, commentify],
   };
 
   var later = {
     name: 'later mail',
     recognizer: '^<div id=":\\w+"><div class="im"><a href="https://bugzilla.mozilla.org/show_bug.cgi\\?id=\\d+',
     matches: is_bugmail,
-    replacers: [rblocks, rbug, monospacer, rtablebug1, rtablebug2, rtablebug3, rtablebug4, rtablebug5, rtablebug6],
+    replacers: [rblocks, rbug, monospacer, rtablebug1, rtablebug2, rtablebug3, rtablebug4, rtablebug5, rtablebug6, commentify],
 
     parser:
       function(html) {
