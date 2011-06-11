@@ -184,9 +184,10 @@ if (!this.bugmail.bzmail) {
         for (r in b.replacers) {
           old = html;
           html = b.replacers[r](html, obj);
-          if (old != html) {
-            console.log("new: " + html);
-          }
+        }
+
+        if (old != html) {
+          console.log("new: " + html);
         }
 
         // Don't run multiple parsers over it, handle that use case by inheritence.
