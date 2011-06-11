@@ -135,8 +135,10 @@ if (!this.bugmail.bzmail) {
     return html.replace(later.recognizer, '$&#c' + obj.comment_num);
   }
 
-  // This could actually be any comment or change (not just comment 0) if the
-  // subject of the bug is changed.
+  
+  // FIXME:
+  //    This could actually be any comment or change (not just comment 0) if
+  //    the subject of the bug is changed.
   var first = {
     name: 'first mail',
     recognizer: '^<div id=":\\w+"><a href="https://bugzilla.mozilla.org/show_bug.cgi\\?id=\\d+',
