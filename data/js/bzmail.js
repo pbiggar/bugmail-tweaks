@@ -1,6 +1,8 @@
 if (!this.bugmail) { this.bugmail = {}; }
 if (!this.bugmail.bzmail) {
 
+  var bug_info_cache = {};
+
   var bz = "https://bugzilla.mozilla.org/";
 
   function replacer (pattern, replacement) {
@@ -8,15 +10,27 @@ if (!this.bugmail.bzmail) {
       pattern = new RegExp(pattern.source, "gm");
       return html.replace(pattern, replacement);
     }
-  }
+  };
 
   function is_bugmail(html) {
       return html.match(this.recognizer) != null;
   };
 
+  function bug_info(num) {
+    $.ajax({
+      url: 'https://api-dev.bugzilla.mozilla.org/latest/bug/' + num + '?include_fields=summary,status',
+      accepts: "application/json",
+      cache: true,
+      contents: "application/json",
+      crossDomain: true,
+      error: function() { console.log("api error"); },
+      success: function() { console.log("success"); },
+    });
+  };
 
   function bug (num, str) {
     if (!str) { str = num; }
+
     return '<a href="' + bz + 'show_bug.cgi?id=' + num + '" target="_blank">' + str + '</a>';
   };
 
