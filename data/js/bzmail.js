@@ -179,13 +179,13 @@ if (!this.bugmail.bzmail) {
     var html = msg.innerHTML;
 
     for (var i in bugmails) {
-      b = bugmails[i];
+      var b = bugmails[i];
       if (b.matches(html)) {
         console.log("Matches: " + b.name);
         console.log("old: " + html);
-        obj = b.parser ? b.parser(html) : null;
+        var obj = b.parser ? b.parser(html) : null;
         for (r in b.replacers) {
-          old = html;
+          var old = html;
           html = b.replacers[r](html, obj);
         }
 
