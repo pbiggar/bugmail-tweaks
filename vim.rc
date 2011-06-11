@@ -1,1 +1,1 @@
-set makeprg=cfx\ xpi
+set makeprg=cfx\ xpi\ -p\ x
