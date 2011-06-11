@@ -22,8 +22,11 @@ if (!this.bugmail.gmail) {
         updateConversation(elem, callback);
      }
     } catch (e) {
-      console.log("Error which tweaking");
-      console.exception(e);
+      // This damn message permeates the logs.
+      if (e.message != "attempt to run compile-and-go script on a cleared scope") {
+        console.log("Error which tweaking");
+        console.exception(e);
+      }
     }
   };
 
