@@ -190,8 +190,11 @@ if (!this.bugmail.bzmail) {
           console.log("new: " + html);
         }
 
-        // Don't run multiple parsers over it, handle that use case by inheritence.
         msg.innerHTML = html;
+
+        if (b.updateHtml) b.updateHtml(msg, obj);
+
+        // Don't run multiple parsers over it, handle that use case by inheritence.
         return;
       }
     }
