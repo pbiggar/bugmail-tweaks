@@ -1,13 +1,4 @@
-const _main = require("main");
 const _self = require("self");
-
-exports.test_test_run = function(test) {
-  test.pass("Unit test running!");
-};
-
-exports.test_id = function(test) {
-  test.assert(require("self").id.length > 0);
-};
 
 exports.test_thingy = function(test) {
 
