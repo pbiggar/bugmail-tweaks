@@ -161,10 +161,10 @@ if (!this.bugmail.bzmail) {
         // Regexs that, concated together, parse bug information out of the gmail's HTML
         var start = '^<div id=":\\w+"><div class="im"><a href="https://bugzilla.mozilla.org/';
         var bugnum = 'show_bug.cgi\\?id=(\\d+)';
-        var comment_num = '[\s\S]+--- Comment #(\\d+)';
+        var comment_num = '[\\s\\S]+--- Comment #(\\d+)';
         var author = ' from ([^\\(]+)';
         var username = '.\\((:[^\\)]+)\\)';
-        var date = '[\s\S]+(\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2} PDT) ---'
+        var date = '[\\s\\S]+(\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2} PDT) ---'
 
           // Read the data first.
         var re = start + bugnum + comment_num + author + username + date;
