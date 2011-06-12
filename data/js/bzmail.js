@@ -205,6 +205,6 @@ if (!this.bugmail.bzmail) {
     console.log("not bugmail");
   }
 
-  this.bugmail.bzmail = {translate: tweak};
+  this.bugmail.bzmail = {translate: tweak, bugmails: bugmails};
 
 };
