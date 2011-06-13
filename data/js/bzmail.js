@@ -195,15 +195,13 @@ if (!this.bugmail.bzmail) {
     console.log("tweaking");
     var html = msg.innerHTML;
 
-    var b = tweaker;
-
-    if (b.matches(html)) {
-      var data = b.parse(html);
-      var _new = b.replace(html);
+    if (tweaker.matches(html)) {
+      var data = tweaker.parse(html);
+      var _new = tweaker.replace(html);
       msg.innerHTML = _new;
 
-      if (b.updateHtml)
-        b.updateHtml(msg, obj);
+      if (tweaker.updateHtml)
+        tweaker.updateHtml(msg, obj);
 
     } else {
       console.log("not bugmail");
