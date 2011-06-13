@@ -4,7 +4,7 @@
 import glob
 import json
 
-files = glob.glob("msg?")
+files = glob.glob("test/msg?")
 
 class Struct(object):
   pass
@@ -25,6 +25,6 @@ for f in files:
 
 # Write out JSON
 result = json.dumps(result)
-file("../data/test-msgs.js", "w").write(result);
+file("data/test-msgs.js", "w").write(result);
 
 
