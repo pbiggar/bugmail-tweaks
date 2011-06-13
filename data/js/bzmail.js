@@ -1,5 +1,10 @@
+// Module setup
 if (!this.bugmail) { this.bugmail = {}; }
 if (!this.bugmail.bzmail) {
+  this.bugmail.bzmail = (function ()
+{
+
+  var my = {};
 
   var bug_info_cache = {};
 
@@ -10,10 +15,6 @@ if (!this.bugmail.bzmail) {
       pattern = new RegExp(pattern.source, "gm");
       return html.replace(pattern, replacement);
     }
-  };
-
-  function is_bugmail(html) {
-      return html.match(this.recognizer) != null;
   };
 
   function bug_info(num) {
@@ -89,8 +90,7 @@ if (!this.bugmail.bzmail) {
     var readd_div = false;
 
     lines = html.split(/<br>\n/);
-    for (var i in lines) {
-      var line = lines[i];
+    for each (var line in lines) {
 
       if (line.match(header1) || line.match(header2)) {
         // heading
@@ -138,73 +138,81 @@ if (!this.bugmail.bzmail) {
     return html.replace(later.recognizer, '$&#c' + obj.comment_num);
   }
 
-  
-  // FIXME:
-  //    This could actually be any comment or change (not just comment 0) if
-  //    the subject of the bug is changed.
-  var first = {
-    name: 'first mail',
-    recognizer: '^<div id=":\\w+"><a href="https://bugzilla.mozilla.org/show_bug.cgi\\?id=\\d+',
-    matches: is_bugmail,
-    replacers: [rblocks, rbug, monospacer, rtablebug1, rtablebug2, rtablebug3, rtablebug4, rtablebug5, rtablebug6, commentify],
-  };
+  function comment_parser(html) {
 
-  var later = {
-    name: 'later mail',
-    recognizer: '^<div id=":\\w+"><div class="im"><a href="https://bugzilla.mozilla.org/show_bug.cgi\\?id=\\d+',
-    matches: is_bugmail,
-    replacers: [rblocks, rbug, monospacer, rtablebug1, rtablebug2, rtablebug3, rtablebug4, rtablebug5, rtablebug6, commentify],
+    var start = '^<div id=":\\w+"><div class="im"><a href="https://bugzilla.mozilla.org/';
+    var bugnum = 'show_bug.cgi\\?id=(\\d+)';
+    var comment_num = '[\\s\\S]+--- Comment #(\\d+)';
+    var author = ' from ([^\\(]+)';
+    var username = '.\\((:[^\\)]+)\\)';
+    var date = '[\\s\\S]+(\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2} PDT) ---'
 
-    parser:
-      function(html) {
+    var re = start + bugnum + comment_num + author + username + date;
+    return html.match(re, 'm');
+  }
 
-        // Regexs that, concated together, parse bug information out of the gmail's HTML
-        var start = '^<div id=":\\w+"><div class="im"><a href="https://bugzilla.mozilla.org/';
-        var bugnum = 'show_bug.cgi\\?id=(\\d+)';
-        var comment_num = '[\\s\\S]+--- Comment #(\\d+)';
-        var author = ' from ([^\\(]+)';
-        var username = '.\\((:[^\\)]+)\\)';
-        var date = '[\\s\\S]+(\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2} PDT) ---'
+  var tweaker = {
 
-          // Read the data first.
-        var re = start + bugnum + comment_num + author + username + date;
-        return html.match(re, 'm');
+    matches: function (html) {
+      for each (var r in this.recognizers) {
+        if (html.match(r)) {
+          return true;
+        }
       }
+      return false;
+    },
+
+    parse: function(html) {
+      for each (var p in this.parsers) {
+        var obj = p(html);
+        if (obj) {
+          return obj;
+        }
+      }
+      return null;
+    },
+
+    replace: function(html) {
+      for each (var r in this.replacers) {
+        html = r(html);
+      }
+      return html;
+    },
+
+
+    recognizers: [
+       '^<div id=":\\w+"><a href="https://bugzilla.mozilla.org/show_bug.cgi\\?id=\\d+',
+       '^<div id=":\\w+"><div class="im"><a href="https://bugzilla.mozilla.org/show_bug.cgi\\?id=\\d+'
+         ],
+
+    replacers: [rblocks, rbug, monospacer, rtablebug1, rtablebug2, rtablebug3, rtablebug4, rtablebug5, rtablebug6, commentify],
+
+    parsers: [comment_parser],
   };
 
-  var bugmails = [first, later];
 
   function tweak (msg) {
     console.log("tweaking");
     var html = msg.innerHTML;
 
-    for (var i in bugmails) {
-      var b = bugmails[i];
-      if (b.matches(html)) {
-        console.log("Matches: " + b.name);
-        console.log("old: " + html);
-        var obj = b.parser ? b.parser(html) : null;
-        for (r in b.replacers) {
-          var old = html;
-          html = b.replacers[r](html, obj);
-        }
+    var b = tweaker;
 
-        if (old != html) {
-          console.log("new: " + html);
-        }
+    if (b.matches(html)) {
+      var data = b.parse(html);
+      var _new = b.replace(html);
+      msg.innerHTML = _new;
 
-        msg.innerHTML = html;
+      if (b.updateHtml)
+        b.updateHtml(msg, obj);
 
-        if (b.updateHtml) b.updateHtml(msg, obj);
-
-        // Don't run multiple parsers over it, handle that use case by inheritence.
-        return;
-      }
-    }
-
-    console.log("not bugmail");
+    } else {
+      console.log("not bugmail");
+    } 
   }
 
-  this.bugmail.bzmail = {translate: tweak, bugmails: bugmails};
+  my.translate = tweak;
 
-};
+  return my;
+
+
+})();}
