@@ -24,7 +24,7 @@ exports.test_bzmail = function(test) {
     // Check that we haven't mistagged
     if (obj) {
       for each (tag in ["comment"]) {
-        test.assert (tag in t.tags);
+        test.assert (t.tags.indexOf(tag) != -1);
       }
     }
 
