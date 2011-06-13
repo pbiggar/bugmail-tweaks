@@ -14,6 +14,7 @@ exports.test_thingy = function(test) {
 
   // Each tag names a function which should trigger a change in the contents
   for each (var t in tests) {
+    console.log(t.name);
     test.assert (tw.matches(t.html));
   }
 }

@@ -20,7 +20,7 @@ for f in files:
   contents = "\n".join(contents[1:])
 
   # Create struct
-  result.append({"contents": contents, "tags": tags})
+  result.append({"name": f, "html": contents, "tags": tags})
 
 
 # Write out JSON
