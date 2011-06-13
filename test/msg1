@@ -1,17 +1,18 @@
 table
-<div id=":1jy" class="ii gt"><div id=":1jx"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=654028" target="_blank">https://bugzilla.mozilla.org/<wbr>show_bug.cgi?id=654028</a><br>
+<div id=":vm"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=654028" target="_blank">https://bugzilla.mozilla.org/<wbr>show_bug.cgi?id=654028</a><br>
 <br>
 Alon Zakai (:azakai) &lt;<a href="mailto:azakai@mozilla.com">azakai@mozilla.com</a>&gt; changed:<br>
 <br>
  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; What &nbsp; &nbsp;|Removed &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; |Added<br>
 ------------------------------<wbr>------------------------------<wbr>----------------<br>
- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Summary|Extreme memory and CPU &nbsp; &nbsp; &nbsp;|70MB of collectible garbage<br>
- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; |usage when typing a &nbsp; &nbsp; &nbsp; &nbsp; |not cleaned up<br>
- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; |Slashdot comment &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;|<br>
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Component|General &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; |JavaScript Engine<br>
+ &nbsp; &nbsp; &nbsp; &nbsp; AssignedTo|<a href="mailto:azakai@mozilla.com">azakai@mozilla.com</a> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;|general@js.bugs<br>
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Product|Firefox &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; |Core<br>
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;QAContact|general@firefox.bugs &nbsp; &nbsp; &nbsp; &nbsp;|general@spidermonkey.bugs<br>
 <font color="#888888"><br>
 --<br>
 Configure bugmail: <a href="https://bugzilla.mozilla.org/userprefs.cgi?tab=email" target="_blank">https://bugzilla.mozilla.org/<wbr>userprefs.cgi?tab=email</a><br>
 ------- You are receiving this mail because: -------<br>
 You are watching the component.<br>
 You are watching the QA Contact of the bug.<br>
-</font></div></div>
+</font></div>
