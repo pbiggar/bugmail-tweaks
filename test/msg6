@@ -1,0 +1,25 @@
+comment,bug
+<div id=":or"><div class="im"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=662383" target="_blank">https://bugzilla.mozilla.org/<wbr>show_bug.cgi?id=662383</a><br>
+<br>
+</div>--- Comment #2 from Brian Hackett &lt;<a href="mailto:bhackett1024@gmail.com">bhackett1024@gmail.com</a>&gt; 2011-06-11 10:12:10 PDT ---<br>
+Fix the first two points above, so that generating a name IC does not modify<br>
+the result types of the opcode, we just always have a type barrier. &nbsp;(Fixing<br>
+bug 663138 will remove this latter property). &nbsp;As predicted, this plus the call<br>
+result read barriers improved precision but ended up making things slower due<br>
+to additional recompilations. &nbsp;This also tweaks some constants so that we wait<br>
+longer to compile/recompile when inference is enabled, and mark type sets as<br>
+unknown sooner when they start growing large. &nbsp;This cuts the number of<br>
+recompilations on jslint to 275 for me, and also cuts the number of<br>
+recompilations in half on SS and v8bench (improving the SS time by 5-6ms).<br>
+<br>
+Still slower than -m (720ms vs. 525ms), needs more work to cut recompilations<br>
+and analysis time.<br>
+<br>
+<a href="http://hg.mozilla.org/projects/jaegermonkey/rev/38f2fbc8490d" target="_blank">http://hg.mozilla.org/<wbr>projects/jaegermonkey/rev/<wbr>38f2fbc8490d</a><br>
+<div><div><span id="q_1307fc3419fdd548_2" class="h4">- Show quoted text -</span></div><div class="h5"><br>
+--<br>
+Configure bugmail: <a href="https://bugzilla.mozilla.org/userprefs.cgi?tab=email" target="_blank">https://bugzilla.mozilla.org/<wbr>userprefs.cgi?tab=email</a><br>
+------- You are receiving this mail because: -------<br>
+You are watching the component for the bug.<br>
+You are watching the QA Contact of the bug.<br>
+</div></div></div>
