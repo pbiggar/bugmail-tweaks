@@ -193,12 +193,16 @@ if (!this.bugmail.bzmail) {
 
   function tweak (msg) {
     console.log("tweaking");
-    var html = msg.innerHTML;
+    var old = msg.innerHTML;
 
-    if (tweaker.matches(html)) {
-      var data = tweaker.parse(html);
-      var _new = tweaker.replace(html);
-      msg.innerHTML = _new;
+    if (tweaker.matches(old)) {
+      var data = tweaker.parse(old);
+      var new_ = tweaker.replace(old);
+      if (old != new_) {
+        console.log("old: " + old);
+        console.log("new: " + new_);
+        msg.innerHTML = new_;
+      }
 
       if (tweaker.updateHtml)
         tweaker.updateHtml(msg, obj);
