@@ -140,14 +140,15 @@ if (!this.bugmail.bzmail) {
 
   function comment_parser(html) {
 
+    var anything = '[\\s\\S]+';
     var start = '^<div id=":\\w+"><div class="im"><a href="https://bugzilla.mozilla.org/';
     var bugnum = 'show_bug.cgi\\?id=(\\d+)';
-    var comment_num = '[\\s\\S]+--- Comment #(\\d+)';
+    var comment_num = '--- Comment #(\\d+)';
     var author = ' from ([^\\(]+)';
     var username = '.\\((:[^\\)]+)\\)';
-    var date = '[\\s\\S]+(\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2} PDT) ---'
+    var date = '(\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2} PDT) ---'
 
-    var re = start + bugnum + comment_num + author + username + date;
+    var re = start + bugnum + anything + comment_num + author + username + anything + date;
     return html.match(re, 'm');
   }
 
