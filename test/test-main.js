@@ -19,18 +19,27 @@ exports.test_bzmail = function(test) {
     // Check all of our messages are matched
     test.assert (tw.matches(t.html));
 
-    var obj = tw.parse(t.html);
+    var data = tw.parse(t.html);
 
     // Check that we haven't mistagged
-    if (obj) {
+    if (data) {
       for each (tag in ["comment"]) {
-        test.assert (t.tags.indexOf(tag) != -1);
+        test.assertNotEqual (t.tags.indexOf(tag), -1);
       }
     }
 
-    // Check comments
+    // Check parsing
     if ("comment" in t.tags) {
-      test.assert (obj);
+      test.assert (data);
+    }
+
+    // Check replacers do something
+    for each (var tag in t.tags)
+    {
+      var tag = "comment";
+      var replacer = tw['replace_' + tag];
+      var new_ = replacer(t.html, data);
+      test.assertNotEqual(new_, t.html);
     }
   }
 }

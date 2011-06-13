@@ -173,9 +173,9 @@ if (!this.bugmail.bzmail) {
       return null;
     },
 
-    replace: function(html) {
+    replace: function(html, data) {
       for each (var r in this.replacers) {
-        html = r(html);
+        html = r(html, data);
       }
       return html;
     },
@@ -189,6 +189,8 @@ if (!this.bugmail.bzmail) {
     replacers: [rblocks, rbug, monospacer, rtablebug1, rtablebug2, rtablebug3, rtablebug4, rtablebug5, rtablebug6, commentify],
 
     parsers: [comment_parser],
+
+    replace_comment: commentify,
   };
 
 
@@ -198,7 +200,7 @@ if (!this.bugmail.bzmail) {
 
     if (tweaker.matches(old)) {
       var data = tweaker.parse(old);
-      var new_ = tweaker.replace(old);
+      var new_ = tweaker.replace(old, data);
       if (old != new_) {
         console.log("old: " + old);
         console.log("new: " + new_);
@@ -206,7 +208,7 @@ if (!this.bugmail.bzmail) {
       }
 
       if (tweaker.updateHtml)
-        tweaker.updateHtml(msg, obj);
+        tweaker.updateHtml(msg, data);
 
     } else {
       console.log("not bugmail");
