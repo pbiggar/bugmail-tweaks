@@ -10,8 +10,11 @@ exports.test_thingy = function(test) {
   var bzmail = _self.data.load("js/bzmail.js");
   bzmail = eval(bzmail);
 
+  var tw = bzmail.tweaker;
+
   // Each tag names a function which should trigger a change in the contents
   for each (var t in tests) {
+    test.assert (tw.matches(t.html));
   }
 }
 

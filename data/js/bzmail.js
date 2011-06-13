@@ -209,6 +209,7 @@ if (!this.bugmail.bzmail) {
   }
 
   my.translate = tweak;
+  my.tweaker = tweaker;
 
   return my;
 
