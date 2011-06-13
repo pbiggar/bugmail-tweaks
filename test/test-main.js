@@ -16,6 +16,11 @@ exports.test_thingy = function(test) {
   for each (var t in tests) {
     console.log(t.name);
     test.assert (tw.matches(t.html));
+
+    // Some aren't worth parsing, since they have no info, but let's parse useful ones.
+    if (t.html.indexOf("--- Comment") != -1) {
+      test.assert (tw.parse(t.html));
+    }
   }
 }
 
