@@ -131,11 +131,13 @@ if (!this.bugmail.bzmail) {
     return result;
   }
 
-  function commentify(html, obj) {
-    if (!obj)
+  function commentify(html, data) {
+    if (!data)
       return html;
 
-    return html.replace(later.recognizer, '$&#c' + obj.comment_num);
+    var result = html.replace(tweaker.recognizers[1], '$&#c' + data.comment_num);
+    console.log(result);
+    return result;
   }
 
   function comment_parser(html) {
@@ -149,7 +151,19 @@ if (!this.bugmail.bzmail) {
     var date = '(\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2} PDT) ---'
 
     var re = start + bugnum + anything + comment_num + author + username + anything + date;
-    return html.match(re, 'm');
+    var result = html.match(re, 'm');
+
+    if (!result) {
+      return null;
+    }
+
+    return { 
+      bugnum: result[1],
+      comment_num: result[2],
+      author: result[3],
+      username: result[4],
+      date: result[5],
+    };
   }
 
   var tweaker = {

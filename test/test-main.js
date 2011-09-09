@@ -36,10 +36,11 @@ exports.test_bzmail = function(test) {
     // Check replacers do something
     for each (var tag in t.tags)
     {
-      var tag = "comment";
-      var replacer = tw['replace_' + tag];
-      var new_ = replacer(t.html, data);
-      test.assertNotEqual(new_, t.html);
+      if (tag == "comment") {
+        var replacer = tw['replace_' + tag];
+        var new_ = replacer(t.html, data);
+        test.assertNotEqual(new_, t.html);
+      }
     }
   }
 }
