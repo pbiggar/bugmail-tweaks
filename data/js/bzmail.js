@@ -196,9 +196,9 @@ if (!this.bugmail.bzmail) {
 
 
     recognizers: [
-       '^<div id=":\\w+"><a href="https://bugzilla.mozilla.org/show_bug.cgi\\?id=\\d+',
-       '^<div id=":\\w+"><div class="im"><a href="https://bugzilla.mozilla.org/show_bug.cgi\\?id=\\d+'
-         ],
+        /^<div id=":\w+">Do not reply to this email. You can add comments to this bug at<br>/,
+        /^<div id=":\w+"><div class="im">Do not reply to this email. You can add comments to this bug at<br>/
+    ],
 
     replacers: [rblocks, rbug, monospacer, rtablebug1, rtablebug2, rtablebug3, rtablebug4, rtablebug5, rtablebug6, commentify],
 
@@ -209,23 +209,20 @@ if (!this.bugmail.bzmail) {
 
 
   function tweak (msg) {
-    console.log("tweaking");
     var old = msg.innerHTML;
 
     if (tweaker.matches(old)) {
+      console.log("tweaking");
       var data = tweaker.parse(old);
       var new_ = tweaker.replace(old, data);
       if (old != new_) {
-        console.log("old: " + old);
-        console.log("new: " + new_);
+        // console.log("old: " + old);
+        // console.log("new: " + new_);
         msg.innerHTML = new_;
       }
 
       if (tweaker.updateHtml)
         tweaker.updateHtml(msg, data);
-
-    } else {
-      console.log("not bugmail");
     } 
   }
 
