@@ -1,18 +1,15 @@
 table
-<div id=":vm"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=654028" target="_blank">https://bugzilla.mozilla.org/<wbr>show_bug.cgi?id=654028</a><br>
+<div id=":2jn">Do not reply to this email. You can add comments to this bug at<br>
+<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=754201" target="_blank">https://bugzilla.mozilla.org/<wbr>show_bug.cgi?id=754201</a><br>
 <br>
-Alon Zakai (:azakai) &lt;<a href="mailto:azakai@mozilla.com">azakai@mozilla.com</a>&gt; changed:<br>
+</div>Alon Zakai (:azakai) &lt;<a href="mailto:azakai@mozilla.com">azakai@mozilla.com</a>&gt; changed:<br>
 <br>
  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; What &nbsp; &nbsp;|Removed &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; |Added<br>
 ------------------------------<wbr>------------------------------<wbr>----------------<br>
- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Component|General &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; |JavaScript Engine<br>
- &nbsp; &nbsp; &nbsp; &nbsp; AssignedTo|<a href="mailto:azakai@mozilla.com">azakai@mozilla.com</a> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;|general@js.bugs<br>
- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Product|Firefox &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; |Core<br>
- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;QAContact|general@firefox.bugs &nbsp; &nbsp; &nbsp; &nbsp;|general@spidermonkey.bugs<br>
-<font color="#888888"><br>
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; CC| &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;|Alon Zakai (:azakai) &lt;<a href="mailto:azakai@mozilla.com">azakai@mozilla.com</a><div class="yj6qo ajU"><div data-tooltip="Show trimmed content" aria-label="Show trimmed content" id=":2lj" class="ajR" role="button" tabindex="0"><img class="ajT" src="images/cleardot.gif"></div></div><div class="adL"><br>
+</div><div class="HOEnZb adL"><div class="adm"><div id="q_1373fdf0f4a9db8f_2" class="ajR h4"><div class="ajT"></div></div></div><div class="h5"><br>
 --<br>
 Configure bugmail: <a href="https://bugzilla.mozilla.org/userprefs.cgi?tab=email" target="_blank">https://bugzilla.mozilla.org/<wbr>userprefs.cgi?tab=email</a><br>
 ------- You are receiving this mail because: -------<br>
-You are watching the component.<br>
-You are watching the QA Contact of the bug.<br>
-</font></div>
+You are the assignee for the bug.<br>
+</div></div>

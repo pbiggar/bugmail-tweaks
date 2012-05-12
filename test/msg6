@@ -1,7 +1,8 @@
 comment,bug
-<div id=":or"><div class="im"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=662383" target="_blank">https://bugzilla.mozilla.org/<wbr>show_bug.cgi?id=662383</a><br>
+<div id=":1kc"><div class="im">Do not reply to this email. You can add comments to this bug at<br>
+<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=662383" target="_blank">https://bugzilla.mozilla.org/show_bug.cgi?id=662383</a><br>
 <br>
-</div>--- Comment #2 from Brian Hackett &lt;<a href="mailto:bhackett1024@gmail.com">bhackett1024@gmail.com</a>&gt; 2011-06-11 10:12:10 PDT ---<br>
+</div>--- Comment #2 from Brian Hackett (:bhackett) &lt;<a href="mailto:bhackett1024@gmail.com">bhackett1024@gmail.com</a>&gt; 2011-06-11 10:12:10 PDT ---<br>
 Fix the first two points above, so that generating a name IC does not modify<br>
 the result types of the opcode, we just always have a type barrier. &nbsp;(Fixing<br>
 bug 663138 will remove this latter property). &nbsp;As predicted, this plus the call<br>
