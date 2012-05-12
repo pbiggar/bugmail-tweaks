@@ -135,22 +135,24 @@ if (!this.bugmail.bzmail) {
     if (!data)
       return html;
 
-    var result = html.replace(tweaker.recognizers[1], '$&#c' + data.comment_num);
+    var result = html.replace(tweaker.recognizers[0], '$&#c' + data.comment_num);
+    console.log("comment num: " + data.comment_num);
     console.log(result);
     return result;
   }
 
   function comment_parser(html) {
 
-    var anything = '[\\s\\S]+';
-    var start = '^<div id=":\\w+"><div class="im"><a href="https://bugzilla.mozilla.org/';
     var bugnum = 'show_bug.cgi\\?id=(\\d+)';
     var comment_num = '--- Comment #(\\d+)';
-    var author = ' from ([^\\(]+)';
-    var username = '.\\((:[^\\)]+)\\)';
-    var date = '(\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2} PDT) ---'
+    var author = ' from (.+?)';
+    var username = ' \\((.+?)\\)';
+    var email = ' &lt;.+?href="(.+?)".+?&gt; ';
+    var date = '(\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2} \\w+) ---';
+    var anything = '[\\s\\S]*?';
 
-    var re = start + bugnum + anything + comment_num + author + username + anything + date;
+    var re = anything + bugnum + anything + comment_num + author + username + email + date;
+    console.log(re);
     var result = html.match(re, 'm');
 
     if (!result) {
@@ -196,8 +198,7 @@ if (!this.bugmail.bzmail) {
 
 
     recognizers: [
-        /^<div id=":\w+">Do not reply to this email. You can add comments to this bug at<br>/,
-        /^<div id=":\w+"><div class="im">Do not reply to this email. You can add comments to this bug at<br>/
+        /^<div id=":\w+">[\s\S]*Do not reply to this email. You can add comments to this bug at[\s\S]*<br>/
     ],
 
     replacers: [rblocks, rbug, monospacer, rtablebug1, rtablebug2, rtablebug3, rtablebug4, rtablebug5, rtablebug6, commentify],

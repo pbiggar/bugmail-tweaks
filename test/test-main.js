@@ -17,20 +17,20 @@ exports.test_bzmail = function(test) {
     console.log(t.name);
 
     // Check all of our messages are matched
-    test.assert (tw.matches(t.html));
+    test.assert (tw.matches(t.html), "tweaker matches");
 
     var data = tw.parse(t.html);
 
     // Check that we haven't mistagged
     if (data) {
       for each (tag in ["comment"]) {
-        test.assertNotEqual (t.tags.indexOf(tag), -1);
+        test.assertNotEqual (t.tags.indexOf(tag), -1, "not mistagged");
       }
     }
 
     // Check parsing
     if ("comment" in t.tags) {
-      test.assert (data);
+      test.assert (data, "data successfully parsed");
     }
 
     // Check replacers do something
@@ -39,7 +39,7 @@ exports.test_bzmail = function(test) {
       if (tag == "comment") {
         var replacer = tw['replace_' + tag];
         var new_ = replacer(t.html, data);
-        test.assertNotEqual(new_, t.html);
+        test.assertNotEqual(new_, t.html, "replacer applied");
       }
     }
   }
