@@ -41,23 +41,23 @@ var rbug = replacer(/([bB]ug:?\s*)(\d+)/,
                     bug('$2', '$1$2'));
 
 // Rewrite bugs in the final column of a table
-var rtablebug1 = replacer(/\|(\d+(?!-))\n/,
+var rtablebug1 = replacer(/\|(\d+)[^.-]\n/,
                           '|' + bug('$1') + '\n');
 
-var rtablebug2 = replacer(/\|(\d+(?!-)), (\d+(?!-))\n/,
+var rtablebug2 = replacer(/\|(\d+)[^.-], (\d+)[^.-]\n/,
                           '|' + bug('$1') + ', ' + bug('$2') + '\n');
 
-var rtablebug3 = replacer(/\|(\d+(?!-)), (\d+(?!-)), (\d+(?!-))([,\n])/,
+var rtablebug3 = replacer(/\|(\d+)[^.-], (\d+)[^.-], (\d+)[^.-]([,\n])/,
                           '|' + bug('$1') + ', ' + bug('$2') + ', ' + bug('$3') + '$4');
 
 // Rewrite bugs in the middle column of a table
-var rtablebug4 = replacer(/\|(\d+(?!-))(\s+|)/,
+var rtablebug4 = replacer(/\|(\d+)[^.-](\s+|)/,
                           '|' + bug('$1') + '$2');
 
-var rtablebug5 = replacer(/\|(\d+(?!-)), (\d+(?!-))(\s+|)/,
+var rtablebug5 = replacer(/\|(\d+)[^.-], (\d+)[^.-](\s+|)/,
                           '|' + bug('$1') + ', ' + bug('$2') + '$3');
 
-var rtablebug6 = replacer(/\|(\d+(?!-)), (\d+(?!-)), (\d+(?!-))([,\s]|)/,
+var rtablebug6 = replacer(/\|(\d+)[^.-], (\d+)[^.-], (\d+)[^.-]([,\s]|)/,
                           '|' + bug('$1') + ', ' + bug('$2') + ', ' + bug('$3') + '$4');
 
 var rtableattachment = replacer(/Attachment #(\d+)/, "Attachment #" + attachment('$1'));

@@ -1,8 +1,9 @@
 {
     "description": "Makes bugzilla more palatable for Gmail users.", 
     "license": "BSD", 
-    "author": "Paul Biggar (http://paulbiggar.com) <paul.biggar@gmail.com>, Till Schneidereit (http://www.tillschneidereit.de) <tschneidereit@gmail.com>", 
-    "version": "0.2", 
+    "author": "Paul Biggar (http://paulbiggar.com) <paul.biggar@gmail.com>", 
+    "contributors" : ["Till Schneidereit (http://www.tillschneidereit.de) <tschneidereit@gmail.com>"],
+    "version": "0.2.1", 
     "fullName": "Bugmail Tweaks", 
     "id": "jid0-86fN5AegPXB2C1BDQv53aTcG4rA"
 }
